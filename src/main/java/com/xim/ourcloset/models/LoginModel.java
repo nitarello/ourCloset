@@ -26,6 +26,22 @@ public class LoginModel implements UserDetails {
     @MapsId
     private User user;
 
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public User getUser() {
         return user;
     }
@@ -71,10 +87,7 @@ public class LoginModel implements UserDetails {
         this.username = username;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("USER"));
-    }
+
 
     public String getPassword() {
         return password;

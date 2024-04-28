@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @RestController
-
+@CrossOrigin("*")
 public class SocialController {
 
 
@@ -26,19 +26,16 @@ public class SocialController {
     @Autowired
     UserDAO userDAO;
 
-    @RequestMapping(value = "/demo", method = RequestMethod.POST)
-    public ResponseEntity<String> hello(@RequestHeader("Authorization") String token) {
-        System.out.println(token);
-        token=token.substring(7);
-        String username=jwtService.extractUsername(token);
-        Optional<LoginModel> loginModel= loginDAO.findByUsername(username);
-        User user = loginModel.get().getUser();   // prendo token, tolgo "bearer ",estraggo l'userrname, lo cerco in Login e ottengo l'user, Dopo lo setterò al post
+    @RequestMapping(value = "/demo", method = RequestMethod.GET)
+    public ResponseEntity<String> hello() {
 
-        // Ottenere la data corrente
-        LocalDate currentDate = LocalDate.now();
+        return ResponseEntity.ok("ciao da loggato");
+    }
 
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public ResponseEntity<String> helloAdmin() {
 
-        return ResponseEntity.ok(token + user.getNome());
+        return ResponseEntity.ok("ciao da loggato - admin");
     }
 
 

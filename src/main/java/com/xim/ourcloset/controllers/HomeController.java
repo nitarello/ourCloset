@@ -2,6 +2,7 @@ package com.xim.ourcloset.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xim.ourcloset.dto.RegisterDto;
+import com.xim.ourcloset.models.AuthenticationResponse;
 import com.xim.ourcloset.models.LoginModel;
 import com.xim.ourcloset.models.User;
 import com.xim.ourcloset.repositories.LoginDAO;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/rest/home")
+@CrossOrigin("*")
 public class HomeController {
     @Autowired
     UserDAO userDAO;
@@ -71,7 +73,7 @@ public class HomeController {
 
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public ResponseEntity<String> login(@RequestBody LoginModel loginModel){
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginModel loginModel){
 
         return ResponseEntity.ok(authenticationService.authenticate(loginModel));
     }

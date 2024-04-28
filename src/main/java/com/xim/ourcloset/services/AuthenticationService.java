@@ -2,7 +2,9 @@ package com.xim.ourcloset.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xim.ourcloset.dto.RegisterDto;
+import com.xim.ourcloset.models.AuthenticationResponse;
 import com.xim.ourcloset.models.LoginModel;
+import com.xim.ourcloset.models.Role;
 import com.xim.ourcloset.models.User;
 import com.xim.ourcloset.repositories.LoginDAO;
 import com.xim.ourcloset.repositories.UserDAO;
@@ -58,9 +60,6 @@ public class AuthenticationService {
 
             ResponseEntity.ok("Utente e dati di accesso registrati con successooo." + jwt);*/
 
-
-
-
             User userino = new User();
             userino.setNome(registerDati.getNome());
             userino.setCognome(registerDati.getCognome());
@@ -70,8 +69,12 @@ public class AuthenticationService {
             loginDati.setUsername(registerDati.getUsername());
             loginDati.setPassword(passwordEncoder.encode(registerDati.getPassword()));
 
+            //role di default user
+            loginDati.setRole(Role.USER);
+
             userino.setLoginModel(loginDati);
             loginDati.setUser(userino);
+
 
             userDAO.save(userino);
             loginRep.save(loginDati);
@@ -85,7 +88,7 @@ public class AuthenticationService {
     }
 
 
-    public String authenticate(LoginModel request) {
+    public AuthenticationResponse authenticate(LoginModel request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
@@ -96,7 +99,8 @@ public class AuthenticationService {
         LoginModel user = loginRep.findByUsername(request.getUsername()).orElseThrow();
 
 
-        return jwtService.generateToken(user);
+        String jwt=jwtService.generateToken(user);
+        return new AuthenticationResponse(jwt, "User loggato con successo" + jwt);
 
     }
 
