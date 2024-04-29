@@ -65,6 +65,9 @@ public class AuthenticationService {
             userino.setCognome(registerDati.getCognome());
             userino.setData_nascita(registerDati.getDataNascita());
             userino.setPropic(registerDati.getPropic());
+
+
+
             LoginModel loginDati = new LoginModel();
             loginDati.setUsername(registerDati.getUsername());
             loginDati.setPassword(passwordEncoder.encode(registerDati.getPassword()));
@@ -100,7 +103,7 @@ public class AuthenticationService {
 
 
         String jwt=jwtService.generateToken(user);
-        return new AuthenticationResponse(jwt, "User loggato con successo" + jwt);
+        return new AuthenticationResponse(jwt, "utente autenticato");
 
     }
 
