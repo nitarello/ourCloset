@@ -5,7 +5,9 @@ import com.xim.ourcloset.dto.RegisterDto;
 import com.xim.ourcloset.models.AuthenticationResponse;
 import com.xim.ourcloset.models.LoginModel;
 import com.xim.ourcloset.models.User;
+import com.xim.ourcloset.repositories.CollezioneDAO;
 import com.xim.ourcloset.repositories.LoginDAO;
+import com.xim.ourcloset.repositories.ModelloDAO;
 import com.xim.ourcloset.repositories.UserDAO;
 
 import com.xim.ourcloset.services.AuthenticationService;
@@ -76,5 +78,23 @@ public class HomeController {
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginModel loginModel){
 
         return ResponseEntity.ok(authenticationService.authenticate(loginModel));
+    }
+
+    @Autowired
+    CollezioneDAO collezioneDAO;
+    @RequestMapping(value = "/hey",method = RequestMethod.GET)
+    public ResponseEntity<?> ciaone(){
+
+        return ResponseEntity.ok(collezioneDAO.findAll());
+    }
+
+    @Autowired
+    ModelloDAO modelloDAO;
+
+
+    @RequestMapping(value = "/heymodel",method = RequestMethod.GET)
+    public ResponseEntity<?> ciaonemode(){
+
+        return ResponseEntity.ok(modelloDAO.findAll());
     }
 }

@@ -19,7 +19,18 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
    private LoginModel loginModel;
 
+    @OneToMany(mappedBy = "user")
+    private List<carta> carte;
 
+
+
+    public List<carta> getCarte() {
+        return carte;
+    }
+
+    public void setCarte(List<carta> carte) {
+        this.carte = carte;
+    }
 
     public LoginModel getLoginModel() {
         return loginModel;
