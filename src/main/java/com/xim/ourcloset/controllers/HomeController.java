@@ -74,6 +74,7 @@ public class HomeController {
 
 
 
+
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginModel loginModel){
 
@@ -82,7 +83,7 @@ public class HomeController {
 
     @Autowired
     CollezioneDAO collezioneDAO;
-    @RequestMapping(value = "/hey",method = RequestMethod.GET)
+    @RequestMapping(value = "/getcolle",method = RequestMethod.GET)
     public ResponseEntity<?> ciaone(){
 
         return ResponseEntity.ok(collezioneDAO.findAll());
@@ -92,9 +93,11 @@ public class HomeController {
     ModelloDAO modelloDAO;
 
 
-    @RequestMapping(value = "/heymodel",method = RequestMethod.GET)
+    @RequestMapping(value = "/getmodel",method = RequestMethod.GET)
     public ResponseEntity<?> ciaonemode(){
 
         return ResponseEntity.ok(modelloDAO.findAll());
     }
+
+
 }

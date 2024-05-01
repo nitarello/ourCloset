@@ -1,5 +1,7 @@
 package com.xim.ourcloset.dto;
 
+import com.xim.ourcloset.models.Artigiano;
+
 import java.sql.Date;
 
 public class RegisterDto {
@@ -64,4 +66,8 @@ public class RegisterDto {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    //campi per ARTIGIANO EVENTUALE
+
+
 }

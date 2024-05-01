@@ -20,10 +20,21 @@ public class Collezione {
     @Column(name="luogocreazione")
     private String luogoCreazione;
 
+    @ManyToOne
+    @JoinColumn(name="id_fk_artigiano")
+    @JsonIgnore
+    private Artigiano artigiano;
 
+
+    public Artigiano getArtigiano() {
+        return artigiano;
+    }
+
+    public void setArtigiano(Artigiano artigiano) {
+        this.artigiano = artigiano;
+    }
 
     @OneToMany(mappedBy = "collezione")
-
     private List<Modello> modello;
 
     public List<Modello> getModello() {

@@ -22,7 +22,17 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<carta> carte;
 
+    @ManyToOne
+    @JoinColumn(name="id_fk_artigiano")
+    private Artigiano artigiano;
 
+    public Artigiano getArtigiano() {
+        return artigiano;
+    }
+
+    public void setArtigiano(Artigiano artigiano) {
+        this.artigiano = artigiano;
+    }
 
     public List<carta> getCarte() {
         return carte;

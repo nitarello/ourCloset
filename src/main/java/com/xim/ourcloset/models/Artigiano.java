@@ -9,13 +9,40 @@ import java.util.List;
 public class Artigiano {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int idart;
+
+
+    @OneToMany(mappedBy = "artigiano",fetch = FetchType.EAGER)
+    private List<Collezione>collezione;
+
     @OneToMany(mappedBy = "artigiano")
-    private List<Modello> modello;
+    private List<User> user;
 
     private String nomebrand;
 
+    public Artigiano() {
+    }
+
+    public Artigiano(List<Collezione> collezione, List<User> user, String nomebrand) {
+        this.collezione = collezione;
+        this.user = user;
+        this.nomebrand = nomebrand;
+    }
+
+    public Artigiano(int idart, List<Collezione> collezione, List<User> user, String nomebrand) {
+        this.idart = idart;
+        this.collezione = collezione;
+        this.user = user;
+        this.nomebrand = nomebrand;
+    }
+
+    public List<Collezione> getCollezione() {
+        return collezione;
+    }
+
+    public void setCollezione(List<Collezione> collezione) {
+        this.collezione = collezione;
+    }
 
     public int getIdart() {
         return idart;
@@ -25,13 +52,7 @@ public class Artigiano {
         this.idart = idart;
     }
 
-    public List<Modello> getModello() {
-        return modello;
-    }
 
-    public void setModello(List<Modello> modello) {
-        this.modello = modello;
-    }
 
     public String getNomebrand() {
         return nomebrand;

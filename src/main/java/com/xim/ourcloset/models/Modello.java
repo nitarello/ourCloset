@@ -23,17 +23,10 @@ public class Modello {
     @Column(name="nomemodello")
     private String nomemodello;
 
-
     @ManyToOne
     @JoinColumn(name="id_fk_collezione")
     @JsonIgnore
     private Collezione collezione;
-
-    @ManyToOne
-    @JoinColumn(name="id_fk_artigiano")
-    @JsonIgnore
-    private Artigiano artigiano;
-
 
 
     public String getNomemodello() {
@@ -52,11 +45,5 @@ public class Modello {
         this.collezione = collezione;
     }
 
-    public Artigiano getArtigiano() {
-        return artigiano;
-    }
 
-    public void setArtigiano(Artigiano artigiano) {
-        this.artigiano = artigiano;
-    }
 }

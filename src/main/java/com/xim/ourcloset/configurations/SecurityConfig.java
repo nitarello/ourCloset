@@ -35,6 +35,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request.requestMatchers("/rest/**").permitAll()
                         .requestMatchers("demo").hasAuthority("USER")
                         .requestMatchers("admin").hasAuthority("ADMIN")
+                        .requestMatchers("beartigiano").hasAuthority("USER")
+                        .requestMatchers("getartigiano").hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers("/collection/**").hasAnyAuthority("USER", "ADMIN")
+
                         .anyRequest().authenticated()
                 ).userDetailsService(userDetailsImp)
                 .sessionManagement(session -> session
