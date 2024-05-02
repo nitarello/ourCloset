@@ -24,6 +24,9 @@ public class Modello {
     @Column(name="nomemodello")
     private String nomemodello;
 
+    @Column(name="imgurl")
+    private String imgurl;
+
     @ManyToOne
     @JoinColumn(name="id_fk_collezione")
     @JsonBackReference
@@ -47,4 +50,11 @@ public class Modello {
     }
 
 
+    public String getImgurl() {
+        return imgurl;
+    }
+
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
+    }
 }
