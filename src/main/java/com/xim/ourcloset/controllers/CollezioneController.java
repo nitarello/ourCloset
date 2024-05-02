@@ -76,7 +76,7 @@ public class CollezioneController {
 
 
 
-        return ResponseEntity.ok("hai creato la collezione" + collezione.getNomeCollezione());
+        return ResponseEntity.ok(collezione);
 
     }
 

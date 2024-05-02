@@ -66,7 +66,7 @@ public class CartaController {
         carta.setUser(user);
         cartaDAO.save(carta);
 
-        return ResponseEntity.ok("carta aggiunta");
+        return ResponseEntity.ok(carta);
 
     }
 }

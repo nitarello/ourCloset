@@ -49,7 +49,7 @@ public class ModelloController {
     @RequestMapping(value = "/postmodel", method = RequestMethod.POST)
     public ResponseEntity<?> createCollection(@RequestBody Modello modello) {
         modelloDAO.save(modello);
-        return ResponseEntity.ok("hai creato la collezione" + modello.getNomemodello());
+        return ResponseEntity.ok(modello);
 
     }
 }
