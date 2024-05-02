@@ -11,14 +11,14 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
-   private int userid;
-   private String nome;
-   private String cognome;
+    private int userid;
+    private String nome;
+    private String cognome;
     private String propic;
     private Date dataNascita;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-   private LoginModel loginModel;
+    private LoginModel loginModel;
 
     @OneToMany(mappedBy = "user")
     private List<Carta> carte;
