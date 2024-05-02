@@ -37,12 +37,17 @@ public class SocialController {
     @Autowired
     ArtigianoDAO artigianoDAO;
 
-    @RequestMapping(value = "/demo", method = RequestMethod.GET)
-    public ResponseEntity<String> hello() {
+    @RequestMapping(value = "/getuser", method = RequestMethod.GET)
+    public ResponseEntity<User> getUser() {
 
-         collezioneDAO.findAll();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LoginModel userlogin = (LoginModel) authentication.getPrincipal();
 
-        return ResponseEntity.ok("ciao da loggato");
+        userlogin.setRole(Role.ADMIN);
+
+        User user=userlogin.getUser();
+
+        return ResponseEntity.ok(user);
 
 
     }

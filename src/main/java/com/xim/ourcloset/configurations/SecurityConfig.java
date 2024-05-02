@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request ->
                         request.requestMatchers("/rest/home/login").permitAll()
                          .requestMatchers("/rest/home/reg").permitAll()
-                        .requestMatchers("demo").hasAuthority("USER")
+                        .requestMatchers("getuser").hasAnyAuthority("USER","ADMIN")
                         .requestMatchers("admin").hasAuthority("ADMIN")
                         .requestMatchers("/rest/home/getcolle").hasAuthority("ADMIN")
                         .requestMatchers("/rest/home/getmodel").hasAuthority("ADMIN")
