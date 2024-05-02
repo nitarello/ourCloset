@@ -46,9 +46,15 @@ public class CartaController {
     }
 
     @RequestMapping(value = "/getcard/{cardId}", method = RequestMethod.GET)
-    public ResponseEntity<List<Carta>> getCardById(@PathVariable(value="cardId") int id) {
+    public ResponseEntity<Carta> getCardById(@PathVariable(value="cardId") int id) {
         Carta carta = cartaDAO.findById(id);
-        return ResponseEntity.ok(Collections.singletonList(carta));
+        return ResponseEntity.ok(carta);
+    }
+
+    @RequestMapping(value = "/getcardsbymodello/{modelId}", method = RequestMethod.GET)
+    public ResponseEntity<List<Carta>> getCardsByModelId(@PathVariable(value="modelId") int id) {
+        List<Carta> carta = cartaDAO.findByModello_Idmodello(id);
+        return ResponseEntity.ok(carta);
     }
 
     @RequestMapping(value = "/postcarta", method = RequestMethod.POST)

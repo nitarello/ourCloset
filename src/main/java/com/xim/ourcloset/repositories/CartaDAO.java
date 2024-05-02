@@ -10,5 +10,6 @@ import java.util.List;
 
 public interface CartaDAO extends JpaRepository<Carta, Integer> {
     List<Carta> findByUser_Userid(int userId);
+    List<Carta> findByModello_Idmodello(int userId);
     Carta findById(int id);
 }
