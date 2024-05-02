@@ -32,12 +32,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request.requestMatchers("/rest/**").permitAll()
+                .authorizeHttpRequests(request ->
+                        request.requestMatchers("/rest/home/login").permitAll()
+                         .requestMatchers("/rest/home/reg").permitAll()
                         .requestMatchers("demo").hasAuthority("USER")
                         .requestMatchers("admin").hasAuthority("ADMIN")
+                        .requestMatchers("/rest/home/getcolle").hasAuthority("ADMIN")
+                        .requestMatchers("/rest/home/getmodel").hasAuthority("ADMIN")
                         .requestMatchers("beartigiano").hasAuthority("USER")
                         .requestMatchers("getartigiano").hasAnyAuthority("USER", "ADMIN")
                         .requestMatchers("/collection/**").hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers("/model/**").hasAnyAuthority("USER", "ADMIN")
+                        .requestMatchers("/carta/**").hasAnyAuthority("USER", "ADMIN")
 
                         .anyRequest().authenticated()
                 ).userDetailsService(userDetailsImp)

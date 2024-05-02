@@ -1,10 +1,11 @@
 package com.xim.ourcloset.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="carte")
-public class carta {
+public class Carta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -16,6 +17,7 @@ public class carta {
 
     @ManyToOne
     @JoinColumn(name="id_fk_user")
+    @JsonBackReference
     private User user;
 
     public int getId() {

@@ -3,6 +3,7 @@ package com.xim.ourcloset.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -25,7 +26,7 @@ public class Modello {
 
     @ManyToOne
     @JoinColumn(name="id_fk_collezione")
-    @JsonIgnore
+    @JsonBackReference
     private Collezione collezione;
 
 

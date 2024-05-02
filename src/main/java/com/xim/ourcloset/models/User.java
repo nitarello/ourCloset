@@ -10,7 +10,8 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int user_id;
+    @Column(name = "user_id", nullable = false)
+   private int userid;
    private String nome;
    private String cognome;
     private String propic;
@@ -20,7 +21,7 @@ public class User {
    private LoginModel loginModel;
 
     @OneToMany(mappedBy = "user")
-    private List<carta> carte;
+    private List<Carta> carte;
 
     @ManyToOne
     @JoinColumn(name="id_fk_artigiano")
@@ -34,11 +35,11 @@ public class User {
         this.artigiano = artigiano;
     }
 
-    public List<carta> getCarte() {
+    public List<Carta> getCarte() {
         return carte;
     }
 
-    public void setCarte(List<carta> carte) {
+    public void setCarte(List<Carta> carte) {
         this.carte = carte;
     }
 
@@ -51,12 +52,12 @@ public class User {
     }
 
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserid() {
+        return userid;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserid(int user_id) {
+        this.userid = user_id;
     }
 
     public String getNome() {
